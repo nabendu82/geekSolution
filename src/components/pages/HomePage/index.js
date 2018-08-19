@@ -23,6 +23,22 @@ const renderButton = {
     marginLeft: '4px'
 }
 
+const renderButtonDisabled = {
+    backgroundColor: '#00539f',
+    color: 'grey',
+    cursor: 'no-drop',
+    border: '2px solid #00539f',
+    borderRadius: '20px',
+    fontSize: '1.6rem',
+    fontWeight: '600',
+    height: '40px',
+    minWidth: '200px',
+    padding: '0 24px',
+    transition: 'box-shadow .3s',
+    fontFamily: 'inherit',
+    marginLeft: '4px'
+}
+
 class HomePage extends Component {
     constructor(props) {
         super(props);
@@ -45,7 +61,6 @@ class HomePage extends Component {
     }
 
     componentDidMount() {
-        console.log('Inside componentDidMount ');
         const values = '';
         this.props.initialToken(values);
     }
@@ -63,19 +78,16 @@ class HomePage extends Component {
             })
         }
         if(this.props.tokenData !== nextProps.tokenData) {
-            console.log('nextProps.tokenData ', nextProps.tokenData);
             this.setState({
                 tokenObj: nextProps.tokenData
             })
         }
         if(this.props.findData !== nextProps.findData) {
-            console.log('nextProps.findData ', nextProps.findData);
             this.props.history.push("/result");
         }
     }
 
     getInitialData() {
-        console.log('Inside getInitialData ');
         this.props.initialData();
     }
 
@@ -115,7 +127,6 @@ class HomePage extends Component {
     }
 
     handlePlanet1Change = (event) => {
-        console.log('Inside handlePlanet1Change ', event.target.value);
         
         this.setState({
             selectedPlanet1: event.target.value
@@ -123,7 +134,6 @@ class HomePage extends Component {
     }
 
     handleVehicle1Selection = (event) => {
-        console.log('Inside handleVehicle1Selection ', event.target.value);
         if(this.state.selectedPlanet1 && this.props.planetData && this.props.vehicleData) {
             if(this.calculateMaxDistance(this.props.planetData, this.props.vehicleData, this.state.selectedPlanet1, event.target.value)) {
                 return;
@@ -140,7 +150,6 @@ class HomePage extends Component {
     }
 
     handlePlanet2Change = (event) => {
-        console.log('Inside handlePlanet2Change ');
 
         this.setState({
             selectedPlanet2: event.target.value
@@ -148,7 +157,6 @@ class HomePage extends Component {
     }
 
     handleVehicle2Selection = (event) => {
-        console.log('Inside handleVehicle2Selection ', event.target.value);
         if(this.state.selectedPlanet2 && this.props.planetData && this.props.vehicleData) {
             if(this.calculateMaxDistance(this.props.planetData, this.props.vehicleData, this.state.selectedPlanet2, event.target.value)) {
                 return;
@@ -165,15 +173,12 @@ class HomePage extends Component {
     }
 
     handlePlanet3Change = (event) => {
-        console.log('Inside handlePlanet3Change ');
-
         this.setState({
             selectedPlanet3: event.target.value
         })
     }
 
     handleVehicle3Selection = (event) => {
-        console.log('Inside handleVehicle3Selection ', event.target.value);
         if(this.state.selectedPlanet3 && this.props.planetData && this.props.vehicleData) {
             if(this.calculateMaxDistance(this.props.planetData, this.props.vehicleData, this.state.selectedPlanet3, event.target.value)) {
                 return;
@@ -189,15 +194,12 @@ class HomePage extends Component {
     }
 
     handlePlanet4Change = (event) => {
-        console.log('Inside handlePlanet4Change ');
-
         this.setState({
             selectedPlanet4: event.target.value
         })
     }
 
     handleVehicle4Selection = (event) => {
-        console.log('Inside handleVehicle4Selection ', event.target.value);
         if(this.state.selectedPlanet4 && this.props.planetData && this.props.vehicleData) {
             if(this.calculateMaxDistance(this.props.planetData, this.props.vehicleData, this.state.selectedPlanet4, event.target.value)) {
                 return;
@@ -218,7 +220,7 @@ class HomePage extends Component {
         submitObj[ 'token' ] = this.state.tokenObj.token;
         submitObj[ 'planet_names' ] = [ this.state.selectedPlanet1, this.state.selectedPlanet2, this.state.selectedPlanet3, this.state.selectedPlanet4 ];
         submitObj[ 'vehicle_names' ] = [ this.state.selectedVehicle1[ 0 ], this.state.selectedVehicle2[ 0 ], this.state.selectedVehicle3[ 0 ], this.state.selectedVehicle4[ 0 ] ];
-        console.log('submitObj ', JSON.stringify(submitObj))
+
         this.props.totalTimeTaken(this.state.totalTime);
         this.props.onFormSubmit(JSON.stringify(submitObj));
     }
@@ -228,7 +230,7 @@ class HomePage extends Component {
         return (
             <PageWrapper wider>
                 <GridHome>
-                    <HeaderTitle small>Select Planets you want to search in: </HeaderTitle>
+                    <HeaderTitle toCenter>Select Planets you want to search in: </HeaderTitle>
                     <div className="grid__item">
                         <FlexBoxNormal>
                             <FlexBoxRev>
@@ -329,8 +331,13 @@ class HomePage extends Component {
                             }
                         </FlexBoxNormal>
                     </div>
-                    <div className="grid__item">
-                        <input type="button" style={ renderButton } onClick={ this.handleFormSubmit } value="Submit" />
+                    <div className="grid__item" style={ { textAlign: 'center' } }>
+                        {this.state.selectedVehicle4.length === 0 ? 
+                            <input type="button" style={ renderButtonDisabled } onClick={ this.handleFormSubmit } disabled value="Submit" />                            
+                            :
+                            <input type="button" style={ renderButton } onClick={ this.handleFormSubmit } value="Submit" />                        
+                        }
+                       
                     </div>
                 </GridHome>
             </PageWrapper>
@@ -342,11 +349,11 @@ class HomePage extends Component {
 HomePage.propTypes = {
     planetData: PropTypes.array,
     vehicleData: PropTypes.array,
-    tokenData: PropTypes.object,
     initialData: PropTypes.func,
     initialToken: PropTypes.func,
     totalTimeTaken: PropTypes.func,
-    onFormSubmit: PropTypes.func
+    onFormSubmit: PropTypes.func,
+    history: PropTypes.object
 }
 
 const mapStateToProps = ({ dataReducer }) => ({

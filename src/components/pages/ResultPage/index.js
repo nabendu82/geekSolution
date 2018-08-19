@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { PageWrapper, HeaderTitle, FlexResult, FlexBoxRev } from '../../molecules/StyledComponents';
+import PropTypes from 'prop-types'
 
 const renderButton = {
     backgroundColor: '#00539f',
@@ -48,6 +49,12 @@ class ResultPage extends Component {
             </PageWrapper>
         );
     }
+
+}
+
+ResultPage.propTypes = {
+    timeData: PropTypes.number,
+    findData: PropTypes.object,
 
 }
 

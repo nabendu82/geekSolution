@@ -25,7 +25,6 @@ export const getPlanetData = () => dispatch => {
 
   export const getToken = values => dispatch => {
     return axios.post('https://findfalcone.herokuapp.com/token', values, config).then(response => {
-        console.log('Inside getToken with values ', response);
         dispatch({ type: GET_TOKEN, tokenData: response.data });
     }).catch( (error) => {
       console.log('ERROR======>', error);
@@ -34,7 +33,6 @@ export const getPlanetData = () => dispatch => {
 
   export const findFalcone = values => dispatch => {
     return axios.post('https://findfalcone.herokuapp.com/find', values, config).then(response => {
-        console.log('Inside findFalcone with values ', response);
         dispatch({ type: GET_FALCONE, findData: response.data });
     }).catch( (error) => {
       console.log('ERROR IN GETTING FALCONE======>', error);

@@ -59,6 +59,7 @@ const FlexBoxNav = styled.div`
 const HeaderTitle = styled.div`
     font-size: ${ props => (props.small ? '18px' : '25px') };
     margin-top: ${ props => (props.topMargin ? '5%' : '') };
+    text-align: ${ props => (props.toCenter ? 'center' : '') };
     font-weight: bold;
     line-height: 1.25;
     color: #333333;
