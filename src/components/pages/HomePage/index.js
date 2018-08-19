@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import * as findingAction from '../../../actions/findingActions';
 import PropTypes from 'prop-types'
-import { PageWrapper, GridHome, HeaderTitle, FlexBoxNormal, FlexBoxRev } from '../../molecules/StyledComponents';
+import { PageWrapper, GridHome, GridDest, HeaderTitle, GridRow } from '../../molecules/StyledComponents';
 import RadioGroup from '../../molecules/RadioGroup';
 import Select from '../../molecules/Select';
 import { withRouter } from 'react-router-dom';
@@ -232,8 +232,8 @@ class HomePage extends Component {
                 <GridHome>
                     <HeaderTitle toCenter>Select Planets you want to search in: </HeaderTitle>
                     <div className="grid__item">
-                        <FlexBoxNormal>
-                            <FlexBoxRev>
+                        <GridDest>
+                            <GridRow>
                                 <div>Destination 1 </div>
                                 {this.state.planetArray &&
                                     <Select
@@ -244,8 +244,17 @@ class HomePage extends Component {
                                         selectedOption={ this.state.selectedPlanet1 } 
                                     />
                                 }
-                            </FlexBoxRev>
-                            <FlexBoxRev>
+                                {this.state.selectedPlanet1 &&
+                                <RadioGroup
+                                    setName={ 'planet1Vehicle' }
+                                    type={ 'radio' }
+                                    controlFunc={ this.handleVehicle1Selection }
+                                    options={ this.state.vehicleArray }
+                                    selectedOptions={ this.state.selectedVehicle1 }
+                                />
+                                }
+                            </GridRow>
+                            <GridRow>
                                 <div>Destination 2 </div>
                                 {this.state.planetArray &&
                                     <Select
@@ -256,8 +265,17 @@ class HomePage extends Component {
                                             selectedOption={ this.state.selectedPlanet2 } 
                                     />
                                 }
-                            </FlexBoxRev>
-                            <FlexBoxRev>
+                                {this.state.selectedPlanet2 &&
+                                <RadioGroup
+                                    setName={ 'planet2Vehicle' }
+                                    type={ 'radio' }
+                                    controlFunc={ this.handleVehicle2Selection }
+                                    options={ this.state.vehicleArray }
+                                    selectedOptions={ this.state.selectedVehicle2 }
+                                />
+                                }
+                            </GridRow>
+                            <GridRow>
                                 <div>Destination 3 </div>
                                 {this.state.planetArray &&
                                     <Select
@@ -268,9 +286,18 @@ class HomePage extends Component {
                                         selectedOption={ this.state.selectedPlanet3 } 
                                     />
                                 }
+                                {this.state.selectedPlanet3 &&
+                                <RadioGroup
+                                    setName={ 'planet3Vehicle' }
+                                    type={ 'radio' }
+                                    controlFunc={ this.handleVehicle3Selection }
+                                    options={ this.state.vehicleArray }
+                                    selectedOptions={ this.state.selectedVehicle3 }
+                                />
+                                }
 
-                            </FlexBoxRev>
-                            <FlexBoxRev>
+                            </GridRow>
+                            <GridRow>
                                 <div>Destination 4 </div>
                                 {this.state.planetArray &&
                                     <Select
@@ -281,46 +308,7 @@ class HomePage extends Component {
                                         selectedOption={ this.state.selectedPlanet4 } 
                                     />
                                 }
-
-                            </FlexBoxRev>
-                            <FlexBoxRev>
-                                <div></div>
-                                <div>Time Taken: {this.state.totalTime}</div>
-
-                            </FlexBoxRev>
-
-                        </FlexBoxNormal>
-                    </div>
-                    <div className="grid__item">
-                        <FlexBoxNormal>
-                            {this.state.selectedPlanet1 &&
-                                <RadioGroup
-                                    setName={ 'planet1Vehicle' }
-                                    type={ 'radio' }
-                                    controlFunc={ this.handleVehicle1Selection }
-                                    options={ this.state.vehicleArray }
-                                    selectedOptions={ this.state.selectedVehicle1 }
-                                />
-                            }
-                            {this.state.selectedPlanet2 &&
-                                <RadioGroup
-                                    setName={ 'planet2Vehicle' }
-                                    type={ 'radio' }
-                                    controlFunc={ this.handleVehicle2Selection }
-                                    options={ this.state.vehicleArray }
-                                    selectedOptions={ this.state.selectedVehicle2 }
-                                />
-                            }
-                            {this.state.selectedPlanet3 &&
-                                <RadioGroup
-                                    setName={ 'planet3Vehicle' }
-                                    type={ 'radio' }
-                                    controlFunc={ this.handleVehicle3Selection }
-                                    options={ this.state.vehicleArray }
-                                    selectedOptions={ this.state.selectedVehicle3 }
-                                />
-                            }
-                            {this.state.selectedPlanet4 &&
+                                {this.state.selectedPlanet4 &&
                                 <RadioGroup
                                     setName={ 'planet4Vehicle' }
                                     type={ 'radio' }
@@ -328,8 +316,17 @@ class HomePage extends Component {
                                     options={ this.state.vehicleArray }
                                     selectedOptions={ this.state.selectedVehicle4 }
                                 />
-                            }
-                        </FlexBoxNormal>
+                                }
+
+                            </GridRow>
+                            <GridRow>
+                                <div></div>
+                                <div></div>
+                                <div>Time Taken: {this.state.totalTime}</div>
+
+                            </GridRow>
+
+                        </GridDest>
                     </div>
                     <div className="grid__item" style={ { textAlign: 'center' } }>
                         {this.state.selectedVehicle4.length === 0 ? 

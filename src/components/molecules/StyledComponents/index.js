@@ -7,9 +7,27 @@ const PageWrapper = styled.div`
 
 const GridHome = styled.div`
   display: grid;
-  grid-template-rows: 80px 100px 100px 80px;
+  grid-template-rows: 80px 200px 80px;
   grid-row-gap: 10px;
   align-items: center;
+`;
+
+const GridDest = styled.div`
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-column-gap: 10px;
+  align-items: start;
+  font-size: 16px;
+  font-weight: bold;
+  line-height: 1.25;
+  color: #333333;
+`;
+
+const GridRow = styled.div`
+  display: grid;
+  grid-template-rows: 20px 40px 100px;
+  grid-row-gap: 5px;
+  align-items: start;
 `;
 
 const HeaderWrapper = styled.div`
@@ -68,4 +86,4 @@ const HeaderTitle = styled.div`
                  0px 18px 23px rgba(0,0,0,0.1);
 `;
 
-export { PageWrapper, GridHome, FlexBoxNormal, FlexBoxNav, HeaderTitle, HeaderWrapper, FlexBoxRev, FlexRevRadio, FlexResult };
+export { PageWrapper, GridHome, GridDest, GridRow, FlexBoxNormal, FlexBoxNav, HeaderTitle, HeaderWrapper, FlexBoxRev, FlexRevRadio, FlexResult };
