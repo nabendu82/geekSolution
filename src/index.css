@@ -26,9 +26,11 @@ html {
 }
 
 body {
-  background-image: url('./topography.svg'),
+  /* background-image: url('./topography.svg'),
     linear-gradient(110deg, #f93d66, #6d47d9);
-  background-size: 340px, auto;
+  background-size: 340px, auto; */
+  background:#018DED url(http://unsplash.it/1500/1000?image=881&blur=50);
+  background-size:cover;
   min-height: calc(100vh - 100px);
   /* margin: 50px; */
   background-attachment: fixed;

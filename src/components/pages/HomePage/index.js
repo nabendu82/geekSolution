@@ -8,9 +8,9 @@ import Select from '../../molecules/Select';
 import { withRouter } from 'react-router-dom';
 
 const renderButton = {
-    backgroundColor: '#00539f',
-    color: 'white',
-    border: '2px solid #00539f',
+    backgroundColor: '#f5f5f5',
+    color: 'black',
+    border: '2px solid #f5f5f5',
     borderRadius: '20px',
     cursor: 'pointer',
     fontSize: '1.6rem',
@@ -24,10 +24,10 @@ const renderButton = {
 }
 
 const renderButtonDisabled = {
-    backgroundColor: '#00539f',
+    backgroundColor: '#c4c4c4',
     color: 'grey',
     cursor: 'no-drop',
-    border: '2px solid #00539f',
+    border: '2px solid #c4c4c4',
     borderRadius: '20px',
     fontSize: '1.6rem',
     fontWeight: '600',
@@ -321,9 +321,8 @@ class HomePage extends Component {
                             </GridRow>
                             <GridRow>
                                 <div></div>
-                                <div></div>
                                 <div>Time Taken: {this.state.totalTime}</div>
-
+                                <div></div>
                             </GridRow>
 
                         </GridDest>

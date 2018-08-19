@@ -80,7 +80,7 @@ const HeaderTitle = styled.div`
     text-align: ${ props => (props.toCenter ? 'center' : '') };
     font-weight: bold;
     line-height: 1.25;
-    color: #333333;
+    color: ${ props => (props.toWhite ? '#f5f5f5' : '#333333') };
     text-shadow: 0px 4px 3px rgba(0,0,0,0.4),
                  0px 8px 13px rgba(0,0,0,0.1),
                  0px 18px 23px rgba(0,0,0,0.1);
